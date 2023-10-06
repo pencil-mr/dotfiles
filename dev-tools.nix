@@ -9,11 +9,11 @@ in {
     unstable.ocaml
     unstable.ocamlPackages.ocaml-lsp
     unstable.ocamlPackages.ocamlformat_0_25_1
-    unstable.rust-analyzer-unwrapped
+    unstable.rust-analyzer
     unstable.rustc
     unstable.cargo
     ];
-    environment.variables = rec {
-    RUST_SRC_PATH = "${unstable.rust.packages.stable.rustPlatform.rustLibSrc}";
+    environment.variables = rec { 
+	    RUST_SRC_PATH = "${unstable.rust.packages.stable.rustPlatform.rustLibSrc}";
     };
 }
