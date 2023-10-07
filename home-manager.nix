@@ -33,11 +33,7 @@
             vim.o.number = true
             vim.o.relativenumber = true
 
-            vim.api.nvim_create_user_command('CCompile', '!gcc % -o dev -Wall -Wextra', {})
-            vim.api.nvim_create_user_command('CppCompile', '!g++ % -o dev -Wall -Wextra', {})
-            
-            vim.keymap.set("n", "<leader>cc", "<cmd>CCompile<cr>", {})
-            vim.keymap.set("n", "<leader>cf", "<cmd>CppCompile<cr>", {})
+            vim.api.nvim_create_user_command('Notes', 'e ~/Notes', {})
 
             -- Defines a read-write directory for treesitters in nvim's cache dir
             local parser_install_dir = vim.fn.stdpath("cache") .. "/treesitters"
@@ -64,7 +60,7 @@
                   config = ''
 
                   require"nvim-treesitter.configs".setup {
-                        ensure_installed = { "c", "cpp", "nix", "ocaml", "zig" },
+                        ensure_installed = { "c", "cpp", "nix", "markdown", "ocaml", "zig" },
                         highlight = {
                                 enable = true;
                         },
