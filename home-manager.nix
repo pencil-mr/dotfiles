@@ -33,8 +33,6 @@
             vim.o.number = true
             vim.o.relativenumber = true
 
-            vim.api.nvim_create_user_command('Notes', 'e ~/Notes', {})
-
             -- Defines a read-write directory for treesitters in nvim's cache dir
             local parser_install_dir = vim.fn.stdpath("cache") .. "/treesitters"
             vim.fn.mkdir(parser_install_dir, "p")
@@ -60,7 +58,7 @@
                   config = ''
 
                   require"nvim-treesitter.configs".setup {
-                        ensure_installed = { "c", "cpp", "nix", "markdown", "ocaml", "zig" },
+                        ensure_installed = { "c", "cpp", "nix", "rust"},
                         highlight = {
                                 enable = true;
                         },
