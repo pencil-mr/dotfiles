@@ -77,14 +77,9 @@
      git
      gcc
      gnumake
-     qmk
      man-pages
      man-pages-posix
    ];
-
-   #environment.variables = rec {
-   #	RUST_SRC_PATH = "${pkgs.rust.packages.stable.rustPlatform.rustLibSrc}";
-   #};
 
 
   # Some programs need SUID wrappers, can be configured further or are
