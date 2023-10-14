@@ -1,14 +1,11 @@
 { config, pkgs, ... }:
-
-let
-    unstable = import <nixos-unstable> { };
-in {
-    environment.systemPackages = with pkgs; [
-    unstable.rust-analyzer
-    unstable.rustc
-    unstable.cargo
+{
+    environment.systemPackages = [
+    pkgs.rust-analyzer
+    pkgs.rustc
+    pkgs.cargo
     ];
     environment.variables = rec { 
-	    RUST_SRC_PATH = "${unstable.rust.packages.stable.rustPlatform.rustLibSrc}";
+	    RUST_SRC_PATH = "${pkgs.rust.packages.stable.rustPlatform.rustLibSrc}";
     };
 }
