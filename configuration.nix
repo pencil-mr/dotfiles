@@ -9,7 +9,6 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./home-manager.nix
-      ./dev-tools.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -79,6 +78,10 @@
      gnumake
      man-pages
      man-pages-posix
+   ];
+
+   fonts.fonts = with pkgs; [
+       (nerdfonts.override { fonts = ["FiraCode"]; } )
    ];
 
 
