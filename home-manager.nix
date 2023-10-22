@@ -152,26 +152,26 @@ include /etc/sway/config.d/*
             programs.neovim = {
                 enable = true;
                 extraLuaConfig = ''
-                    vim.g.mapleader = " "
-                    vim.o.expandtab = true
-                    vim.o.shiftwidth = 4
-                    vim.o.number = true
-                    vim.o.relativenumber = true
+vim.g.mapleader = " "
+vim.o.expandtab = true
+vim.o.shiftwidth = 4
+vim.o.number = true
+vim.o.relativenumber = true
 
-		    vim.g.netrw_banner=0
+vim.g.netrw_banner=0
 
-                    vim.keymap.set("t", "<esc>", "<C-\\><C-n>", {})
-		    vim.keymap.set("n", "<Leader>t", "<cmd>belowright 100vs | term<Cr>", {})
-		    vim.keymap.set("n", "<Leader>sb", "<cmd>bel 100vs | Telescope buffers<CR>", {})
-                    vim.keymap.set("n", "<Leader>qf", "<cmd>copen<CR>", {})
-                    --
+vim.keymap.set("t", "<esc>", "<C-\\><C-n>", {})
+vim.keymap.set("n", "<Leader>t", "<cmd>belowright 100vs | term<Cr>", {})
+vim.keymap.set("n", "<Leader>sb", "<cmd>bel 100vs | Telescope buffers<CR>", {})
+vim.keymap.set("n", "<Leader>qf", "<cmd>copen<CR>", {})
+--
 
 
-                    -- Defines a read-write directory for treesitters in nvim's cache dir
-                    local parser_install_dir = vim.fn.stdpath("cache") .. "/treesitters"
-                    vim.fn.mkdir(parser_install_dir, "p")
-                    -- Prevents reinstall of treesitter plugins every boot
-                    vim.opt.runtimepath:append(parser_install_dir)
+-- Defines a read-write directory for treesitters in nvim's cache dir
+local parser_install_dir = vim.fn.stdpath("cache") .. "/treesitters"
+vim.fn.mkdir(parser_install_dir, "p")
+-- Prevents reinstall of treesitter plugins every boot
+vim.opt.runtimepath:append(parser_install_dir)
 
                     '';
                 plugins = with pkgs.vimPlugins; [
@@ -204,13 +204,12 @@ include /etc/sway/config.d/*
                 { plugin = nvim-treesitter;
                     type = "lua";
                     config = ''
-
                         require"nvim-treesitter.configs".setup {
                             ensure_installed = { "c", "cpp", "comment", "nix", "norg", "ocaml", "rust"},
-                                             highlight = {
-                                                 enable = true;
-                                             },
-                                             parser_install_dir = parser_install_dir
+                                highlight = {
+                                    enable = true;
+                                },
+                                parser_install_dir = parser_install_dir
                         }
                     '';
                 }
@@ -221,7 +220,7 @@ include /etc/sway/config.d/*
 
                         lspconfig.ocamllsp.setup {}
 
-                    vim.keymap.set("n", "<space>e", vim.diagnostic.open_float)
+                        vim.keymap.set("n", "<space>e", vim.diagnostic.open_float)
                         vim.keymap.set("n", "[d", vim.diagnostic.goto_prev)
                         vim.keymap.set("n", "]d", vim.diagnostic.goto_next)
                         vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist)
