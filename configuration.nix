@@ -75,6 +75,7 @@
      wget
      git
      gcc
+     gdb
      gnumake
      man-pages
      man-pages-posix
