@@ -149,6 +149,9 @@ include /etc/sway/config.d/*
                     edit_config = "sudo nvim /etc/nixos/configuration.nix";
                 };
             };
+            programs.fzf = {
+                enable = true;
+            };
             programs.neovim = {
                 enable = true;
                 extraLuaConfig = ''
@@ -157,6 +160,8 @@ vim.o.expandtab = true
 vim.o.shiftwidth = 4
 vim.o.number = true
 vim.o.relativenumber = true
+vim.o.cursorline = true
+vim.o.cursorlineopt = "number"
 
 vim.g.netrw_banner=0
 
@@ -187,25 +192,13 @@ vim.opt.runtimepath:append(parser_install_dir)
                     type = "lua";
                     config = ''
                         vim.cmd[[colorscheme catppuccin]]
-                        vim.api.nvim_set_hl(0, 'LineNr', {fg = "#f5e0dc" } )
                         '';
-                }
-                { plugin = neorg;
-                    type = "lua";
-                    config = ''
-                        require"neorg".setup {
-                            load = {
-                                ["core.defaults"] = {},
-                                ["core.concealer"] = {}
-                            }
-                        }
-                    '';
                 }
                 { plugin = nvim-treesitter;
                     type = "lua";
                     config = ''
                         require"nvim-treesitter.configs".setup {
-                            ensure_installed = { "c", "cpp", "comment", "nix", "norg", "ocaml", "rust"},
+                            ensure_installed = { "c", "cpp", "comment","go", "nix", "ocaml", "rust"},
                                 highlight = {
                                     enable = true;
                                 },
@@ -219,6 +212,7 @@ vim.opt.runtimepath:append(parser_install_dir)
                         local lspconfig = require("lspconfig")
 
                         lspconfig.ocamllsp.setup {}
+                        lspconfig.gopls.setup {}
 
                         vim.keymap.set("n", "<space>e", vim.diagnostic.open_float)
                         vim.keymap.set("n", "[d", vim.diagnostic.goto_prev)
